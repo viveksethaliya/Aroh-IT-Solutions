@@ -3,12 +3,12 @@ import { Mail, Phone, MapPin, Share2, Globe, MessageCircle } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="bg-muted text-muted-foreground border-t">
+    <footer className="bg-background text-muted-foreground border-t">
       <div className="container mx-auto px-4 md:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">Shree IT Solutions</h3>
+            <h3 className="text-xl font-bold text-primary">Aroh IT Solutions</h3>
             <p className="text-sm leading-relaxed">
               Empowering businesses with cutting-edge technology solutions. We deliver innovative web and software services tailored to your needs.
             </p>
@@ -56,7 +56,7 @@ export function Footer() {
         </div>
         
         <div className="mt-12 pt-8 border-t border-border text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Shree IT Solutions. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Aroh IT Solutions. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -27,7 +27,7 @@ export function WhyChooseUs() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-6">
-              Why Partner with <span className="text-primary">Shree IT Solutions?</span>
+              Why Partner with <span className="text-primary">Aroh IT Solutions?</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
               We don&apos;t just build software; we build partnerships. Our team takes the time to understand your unique challenges and crafts technology solutions that drive real business value and growth.

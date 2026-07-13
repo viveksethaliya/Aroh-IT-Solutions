@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ServiceImage } from "./service-image";
 
 export const metadata: Metadata = {
-  title: "Our Services | Shree IT Solutions",
+  title: "Our Services | Aroh IT Solutions",
   description: "Explore our comprehensive range of digital services and solutions.",
 };
 
@@ -51,22 +51,22 @@ const allServices = [
 
 export default function ServicesPage() {
   return (
-    <div className="flex flex-col min-h-screen pt-16">
+    <div className="flex flex-col min-h-screen">
 
       {/* Header */}
-      <section className="bg-background py-20 border-b">
+      <section className="bg-[#003366] py-20 border-b-0">
         <div className="container mx-auto px-4 md:px-8 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Comprehensive <span className="text-primary">Digital Services</span>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+            Comprehensive <span className="text-blue-300">Digital Services</span>
           </h1>
-          <p className="text-lg text-muted-foreground">
-            We provide end-to-end digital solutions designed to elevate your brand, engage your customers, and drive sustainable growth online.
+          <p className="text-lg text-white/80 leading-relaxed">
+            From custom web applications to strategic digital marketing, we provide end-to-end solutions to help your business thrive online.
           </p>
         </div>
       </section>
 
       {/* Services List */}
-      <section className="py-24 bg-muted/30">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-24">
             {allServices.map((service, index) => (

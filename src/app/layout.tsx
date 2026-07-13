@@ -16,7 +16,7 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Shree IT Solutions | Modern IT Services & Consulting",
+  title: "Aroh IT Solutions | Modern IT Services & Consulting",
   description: "Providing top-notch IT solutions, web development, and digital transformation services to help your business grow.",
   verification: {
     google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_KEY",

@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { Target, Lightbulb, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Shree IT Solutions",
-  description: "Learn about our mission, vision, and the team behind Shree IT Solutions.",
+  title: "About Us | Aroh IT Solutions",
+  description: "Learn about our mission, vision, and the team behind Aroh IT Solutions.",
 };
 
 const values = [
@@ -31,13 +32,13 @@ export default function AboutPage() {
     <div className="flex flex-col min-h-screen">
 
       {/* Hero Section */}
-      <section className="bg-muted py-20 md:py-32">
+      <section className="bg-[#003366] py-20 md:py-32">
         <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-            Driving Digital <span className="text-primary">Transformation</span>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+            Driving Digital <span className="text-blue-300">Transformation</span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Since our inception, Shree IT Solutions has been at the forefront of technological innovation, helping businesses of all sizes navigate the complexities of the digital world.
+          <p className="text-xl text-white/80 leading-relaxed">
+            Since our inception, Aroh IT Solutions has been at the forefront of technological innovation, helping businesses of all sizes navigate the complexities of the digital world.
           </p>
         </div>
       </section>
@@ -47,7 +48,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {values.map((value, index) => (
-              <div key={index} className="flex flex-col items-center text-center space-y-4 p-6 rounded-2xl bg-muted/30 border border-border/50">
+              <div key={index} className="flex flex-col items-center text-center space-y-4 p-6 rounded-2xl bg-background border border-border/50">
                 <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <value.icon className="h-8 w-8 text-primary" />
                 </div>
@@ -60,7 +61,7 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-24 bg-muted/50">
+      <section className="py-24 bg-background">
         <div className="container mx-auto px-4 md:px-8 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
@@ -83,10 +84,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-background text-center">
+      <section className="py-24 bg-[#003366] text-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Ready to Work Together?</h2>
-          <Link href="/contact" className={buttonVariants({ size: "lg" })}>
+          <h2 className="text-3xl font-bold text-white mb-8">Ready to Work Together?</h2>
+          <Link href="/contact" className={cn(buttonVariants({ size: "lg" }), "bg-black text-white hover:bg-black")}>
             Contact Our Team
           </Link>
         </div>

@@ -66,7 +66,9 @@ export function ServicesOverview() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="h-full border-white/30 bg-[#003366] hover:border-white transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:-translate-y-1">
+              <Card
+                className="h-full border-white/10 bg-white/5 transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:-translate-y-1 shadow-lg"
+              >
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-white/10 flex items-center justify-center mb-4">
                     <service.icon className="h-6 w-6 text-white" />
@@ -81,14 +83,14 @@ export function ServicesOverview() {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <Link href="/services" className={buttonVariants({ variant: "outline", size: "lg", className: "border-white text-white hover:bg-white hover:text-[#003366]" })}>
+          <Link href="/services" className={buttonVariants({ variant: "outline", size: "lg", className: "border-white text-[#03366] hover:bg-white hover:text-[#003366]" })}>
             View All Services
           </Link>
         </motion.div>

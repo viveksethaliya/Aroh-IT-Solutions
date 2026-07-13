@@ -56,11 +56,11 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-start gap-4 pt-4">
-            <Link href="/contact" className={buttonVariants({ size: "lg", className: "btn-neomorph-off w-full sm:w-auto h-14 px-8 text-base group bg-[#F8F9FA] text-[#003366] hover:bg-[#F8F9FA]/90" })}>
+            <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full sm:w-auto h-14 px-8 text-base group bg-[#F8F9FA] text-[#003366] hover:bg-[#F8F9FA]/90" })}>
               Get a Free Consultation
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link href="/services" className={buttonVariants({ size: "lg", variant: "outline", className: "btn-neomorph-off w-full sm:w-auto h-14 px-8 text-base border-[#F8F9FA] text-[#003366] hover:bg-[#F8F9FA]/10" })}>
+            <Link href="/services" className={buttonVariants({ size: "lg", variant: "outline", className: "w-full sm:w-auto h-14 px-8 text-base border-2 border-white text-white bg-white/10 hover:bg-white hover:text-[#003366] shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-all duration-300" })}>
               Explore Our Services
             </Link>
           </div>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pimple Button</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Purple background */
+            background-color: #9b59b6;
+            font-family: sans-serif;
+        }
+
+        /* Container to hold the button */
+        .container {
+            position: relative;
+        }
+
+        .pimple-btn {
+            /* Size of the button */
+            width: 150px;
+            height: 150px;
+
+            /* Circular shape */
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+
+            /* Base background */
+            background-color: #9b59b6;
+
+            /* No shadows on main element - handled by pseudos */
+            box-shadow: none;
+
+            /* Positioning for optional inner content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            /* Remove default browser styles */
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+
+            /* Smooth scale transition only */
+            transition: transform 0.1s ease;
+
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        /* 
+           ::before holds the OUTSET shadow (Normal state)
+        */
+        .pimple-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #9b59b6;
+            z-index: -1;
+
+            /* The Outset Shadow */
+            box-shadow: 20px 20px 60px #844c9b,
+                -20px -20px 60px #b266d1;
+
+            /* Smooth opacity transition */
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+
+        /* 
+           ::after holds the INSET shadow (Pressed state)
+        */
+        .pimple-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #9b59b6;
+            z-index: -1;
+
+            /* The Inset Shadow */
+            box-shadow: inset 20px 20px 60px #844c9b,
+                inset -20px -20px 60px #b266d1;
+
+            /* Initially hidden */
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+        /* 
+           Active State (On Press):
+           - Fade OUT the outset shadow (::before)
+           - Fade IN the inset shadow (::after)
+           - Scale down slightly
+        */
+        .pimple-btn:active {
+            transform: scale(0.95);
+        }
+
+        .pimple-btn:active::before {
+            opacity: 0;
+        }
+
+        .pimple-btn:active::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <button class="pimple-btn" aria-label="Pop the pimple"></button>
+    </div>
+
+</body>
+
+</html>

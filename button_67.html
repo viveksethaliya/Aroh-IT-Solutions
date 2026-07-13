@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button 67</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #9b59b6;
+            /* Parent background */
+            font-family: "Cascadia Code", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+        }
+
+        .button-67 {
+            align-items: center;
+            background: #9b59b6;
+            border: 0;
+            border-radius: 8px;
+            /* 
+               Neumorphism Light Source Top-Left:
+               - Top-Left (-10, -10): Highlight (Light Purple #b266d1)
+               - Bottom-Right (10, 10): Shadow (Dark Purple #844c9b)
+            */
+            box-shadow: -10px -10px 30px 0 #b266d1, 10px 10px 30px 0 #844c9b;
+            box-sizing: border-box;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            font-family: "Cascadia Code", Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+            font-size: 1rem;
+            justify-content: center;
+            line-height: 1.5rem;
+            padding: 15px;
+            position: relative;
+            text-align: left;
+            transition: .2s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: pre;
+            width: max-content;
+            word-break: normal;
+            word-spacing: normal;
+        }
+
+        .button-67:hover {
+            background: #a662c1;
+            /* Enhance shadows slightly on hover */
+            box-shadow: -12px -12px 30px 0 #bd73dc, 12px 12px 30px 0 #7e4296;
+        }
+
+        .button-67:active {
+            /* 
+               Pressed (Inset):
+               - Top-Left (10, 10 inset): Shadow (Dark #844c9b)
+               - Bottom-Right (-10, -10 inset): Highlight (Light #b266d1)
+            */
+            box-shadow: inset 10px 10px 30px 0 #844c9b, inset -10px -10px 30px 0 #b266d1;
+        }
+
+        @media (min-width: 768px) {
+            .button-67 {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="button-67" role="button">Button 67</button>
+
+</body>
+
+</html>

@@ -58,13 +58,40 @@ export function WhyChooseUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {/* Using a beautiful CSS gradient as a placeholder until real images are added */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-blue-500/20 backdrop-blur-md" />
-            <div className="absolute inset-0 flex items-center justify-center p-8">
+            {/* Background design accents */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-blue-500/10 backdrop-blur-md" />
+            <div className="absolute inset-0 flex items-center justify-center p-6 sm:p-8">
               <div className="grid grid-cols-2 gap-4 w-full h-full">
-                <div className="bg-background/80 rounded-xl shadow-sm border border-border/50 animate-pulse delay-75" />
-                <div className="bg-background/80 rounded-xl shadow-sm border border-border/50 animate-pulse delay-150" />
-                <div className="bg-background/80 rounded-xl shadow-sm border border-border/50 animate-pulse delay-300 col-span-2" />
+                {/* Collaboration Image */}
+                <div className="relative overflow-hidden rounded-xl shadow-md border border-border/50 group bg-card">
+                  <Image 
+                    src="/why-choose-us-collaboration.png" 
+                    alt="Team Collaboration" 
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                {/* Workspace Image */}
+                <div className="relative overflow-hidden rounded-xl shadow-md border border-border/50 group bg-card">
+                  <Image 
+                    src="/why-choose-us-workspace.png" 
+                    alt="Developer Workspace" 
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                {/* Dashboard Image */}
+                <div className="relative overflow-hidden rounded-xl shadow-md border border-border/50 col-span-2 group bg-card">
+                  <Image 
+                    src="/why-choose-us-dashboard.png" 
+                    alt="Performance Dashboard" 
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>

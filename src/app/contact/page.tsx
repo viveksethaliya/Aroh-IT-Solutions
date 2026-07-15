@@ -11,6 +11,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
+import { SubpageHero } from "@/components/layout/SubpageHero";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,16 +63,10 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="bg-[#003366] py-20 border-b-0">
-        <div className="container mx-auto px-4 md:px-8 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-            Get in <span className="text-blue-300">Touch</span>
-          </h1>
-          <p className="text-lg text-white/80">
-            Have a project in mind or need assistance? Fill out the form below and our team will get back to you shortly.
-          </p>
-        </div>
-      </section>
+      <SubpageHero 
+        title={<>Get in <span className="text-blue-300">Touch</span></>}
+        description="Have a project in mind or need assistance? Fill out the form below and our team will get back to you shortly."
+      />
 
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 md:px-8 max-w-6xl">

@@ -8,11 +8,20 @@ import { ArrowRight } from "lucide-react";
 export function CTASection() {
   return (
     <section className="py-24 relative overflow-hidden bg-primary text-primary-foreground">
-      {/* Decorative patterns */}
-      <div className="absolute inset-0 opacity-10">
-        <svg className="absolute left-0 top-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor" />
-        </svg>
+      {/* Background SVG wave patterns moving in a circular motion */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {/* Wave 1 - spinning clockwise */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180vmax] h-[180vmax] opacity-[0.06] animate-[spin_80s_linear_infinite]">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor" />
+          </svg>
+        </div>
+        {/* Wave 2 - spinning counter-clockwise for dynamic morphing overlay */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmax] h-[150vmax] opacity-[0.03] animate-[spin_55s_linear_infinite_reverse]">
+          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor" />
+          </svg>
+        </div>
       </div>
       
       <div className="container relative z-10 mx-auto px-4 md:px-8 text-center">

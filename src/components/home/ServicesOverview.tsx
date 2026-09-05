@@ -35,8 +35,8 @@ export function ServicesOverview() {
   return (
     <section id="capabilities" className="py-[clamp(80px,12vh,150px)] bg-background">
       <div className="wrap">
-        <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-[clamp(20px,5vw,72px)] items-end mb-[clamp(34px,6vh,64px)] max-[820px]:grid-cols-1 max-[820px]:items-start max-[820px]:gap-4 obs">
-          <h2 className="type-h2 max-w-[16ch] max-[820px]:max-w-none text-foreground">
+        <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-[clamp(20px,5vw,72px)] items-end mb-[clamp(34px,6vh,64px)] max-md:grid-cols-1 max-md:items-start max-md:gap-4 obs">
+          <h2 className="type-h2 max-w-[16ch] max-md:max-w-none text-foreground">
             What we build
           </h2>
           <p className="type-body pb-[.45rem]">
@@ -102,7 +102,7 @@ export function ServicesOverview() {
                   style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-[clamp(20px,2.8vw,34px)] pb-[clamp(24px,3vw,34px)] grid grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-[clamp(20px,3vw,48px)] max-[760px]:grid-cols-1">
+                    <div className="px-[clamp(20px,2.8vw,34px)] pb-[clamp(24px,3vw,34px)] grid grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-[clamp(20px,3vw,48px)] max-md:grid-cols-1">
                       <p className="m-0 text-muted-foreground max-w-[60ch]">
                         {cap.desc}
                       </p>

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-background" style={{ paddingTop: "clamp(46px,7vh,80px)", paddingBottom: "34px" }}>
+    <footer className="bg-background pt-[clamp(46px,7vh,80px)] pb-[34px]">
       <div className="wrap">
         <div 
           className="grid gap-[clamp(24px,4vw,50px)] pb-11 grid-cols-1 min-[640px]:grid-cols-2 min-[980px]:grid-cols-[1.6fr_repeat(3,minmax(0,1fr))]"

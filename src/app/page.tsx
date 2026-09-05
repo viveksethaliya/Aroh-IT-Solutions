@@ -20,8 +20,8 @@ export default function Home() {
       {/* Statement Band — two-column, left-aligned, exact reference copy */}
       <section className="py-[clamp(80px,12vh,150px)] bg-plate obs" style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.06)" }}>
         <div className="wrap">
-          <div className="grid items-start gap-[clamp(28px,5vw,80px)] max-[900px]:grid-cols-1" style={{ gridTemplateColumns: "minmax(0,1fr) minmax(0,1.35fr)" }}>
-            <h2 className="type-h2 text-foreground obs">Most software fails on the second year, not the first.</h2>
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] items-start gap-[clamp(28px,5vw,80px)] max-md:grid-cols-1">
+            <h2 className="type-h2 text-foreground obs max-md:w-full">Most software fails on the second year, not the first.</h2>
             <div className="obs">
               <p className="m-0 mb-[1.1rem] text-muted-foreground" style={{ fontSize: "clamp(1.15rem,2vw,1.55rem)", lineHeight: 1.45, fontVariationSettings: '"wdth" 100,"wght" 350' }}>
                 Launching is the easy part. The hard part is the system still being fast, still being understood by whoever inherits it, and still bending to a business that has changed since you scoped it.

@@ -28,8 +28,8 @@ export function ProcessRail() {
     <section id="process" className="py-[clamp(80px,12vh,150px)] bg-plate" style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.06)" }}>
       <div className="wrap">
         
-        <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-[clamp(20px,5vw,72px)] items-end mb-[clamp(34px,6vh,64px)] max-[820px]:grid-cols-1 max-[820px]:items-start max-[820px]:gap-4 obs">
-          <h2 className="type-h2 max-w-[16ch] max-[820px]:max-w-none text-foreground">
+        <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-[clamp(20px,5vw,72px)] items-end mb-[clamp(34px,6vh,64px)] max-md:grid-cols-1 max-md:items-start max-md:gap-4 obs">
+          <h2 className="type-h2 max-w-[16ch] max-md:max-w-none text-foreground">
             How an engagement runs
           </h2>
           <p className="type-body pb-[.45rem]">
@@ -39,7 +39,7 @@ export function ProcessRail() {
 
         {/* One billet, four milled bays */}
         <div 
-          className="grid grid-cols-[repeat(4,minmax(0,1fr))] rounded-[var(--radius-lg)] overflow-hidden obs max-[980px]:grid-cols-2 max-[600px]:grid-cols-1"
+          className="grid grid-cols-[repeat(4,minmax(0,1fr))] rounded-[var(--radius-lg)] overflow-hidden obs max-lg:grid-cols-2 max-md:grid-cols-1"
           style={{
             background: "linear-gradient(180deg,var(--high) 0%,var(--raised) 3%,var(--plate) 100%)",
             boxShadow: "var(--bevel-strong), var(--lift-2)"
@@ -48,7 +48,7 @@ export function ProcessRail() {
           {stages.map((stage) => (
             <div 
               key={stage.num}
-              className="relative p-[clamp(26px,2.8vw,42px)_clamp(22px,2.2vw,34px)_clamp(60px,6vw,82px)] group [box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] min-[600px]:[&:nth-child(n+3)]:max-[980px]:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] min-[600px]:[&:nth-child(even)]:max-[980px]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] min-[980px]:[&+&]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] first:[box-shadow:none!important]"
+              className="relative p-[clamp(26px,2.8vw,42px)_clamp(22px,2.2vw,34px)_clamp(60px,6vw,82px)] group [box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:[&:nth-child(n+3)]:max-lg:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:[&:nth-child(even)]:max-lg:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] lg:[&+&]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] first:[box-shadow:none!important]"
             >
 
 

@@ -12,7 +12,7 @@ import { contactFormSchema, type ContactFormData } from "@/lib/validations/conta
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".45rem" }}>
+      <label className="block text-[.8125rem] text-muted-foreground mb-[.45rem]">
         {label}
       </label>
       {children}
@@ -103,13 +103,12 @@ export default function ContactPage() {
         <div className="wrap">
           {/* Two-column grid: info left, form right */}
           <div
-            className="grid items-start gap-[clamp(32px,6vw,90px)] max-[900px]:grid-cols-1"
-            style={{ gridTemplateColumns: "minmax(0,.85fr) minmax(0,1.15fr)" }}
+            className="grid grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] items-start gap-[clamp(32px,6vw,90px)] max-md:grid-cols-1"
           >
 
             {/* Left — heading + facts */}
             <div>
-              <h1 className="type-h2 text-foreground mb-4" style={{ marginBottom: "1rem" }}>
+              <h1 className="type-h2 text-foreground mb-4">
                 Tell us what is breaking
               </h1>
               <p className="type-body">
@@ -117,16 +116,16 @@ export default function ContactPage() {
                 with a first read and an honest note on whether we are the right team for it.
               </p>
               <div className="grid gap-[1.4rem] mt-[2.2rem]">
-                <div>
-                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Email</span>
+                <div className="mb-4">
+                  <span className="block text-[.8125rem] text-muted-foreground mb-[.2rem]">Email</span>
                   <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>hello@arohitsolutions.com</strong>
                 </div>
-                <div>
-                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Phone</span>
+                <div className="mb-4">
+                  <span className="block text-[.8125rem] text-muted-foreground mb-[.2rem]">Phone</span>
                   <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>+91 79 4000 1200</strong>
                 </div>
                 <div>
-                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Studio</span>
+                  <span className="block text-[.8125rem] text-muted-foreground mb-[.2rem]">Studio</span>
                   <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>Prahlad Nagar, Ahmedabad 380015</strong>
                 </div>
               </div>
@@ -221,7 +220,7 @@ export default function ContactPage() {
                 type="submit"
                 variant="solid"
                 disabled={isSubmitting}
-                style={{ justifySelf: "start", marginTop: "6px" }}
+                className="justify-self-start mt-[6px]"
               >
                 {isSubmitting ? "Sending…" : "Send message"}
               </Button>

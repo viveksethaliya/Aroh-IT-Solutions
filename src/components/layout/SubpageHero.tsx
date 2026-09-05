@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 
 interface SubpageHeroProps {
   title: React.ReactNode;
@@ -14,22 +13,12 @@ export function SubpageHero({ title, description }: SubpageHeroProps) {
       style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.06)" }}
     >
       <div className="wrap w-full relative z-10 max-w-4xl">
-        <motion.h1
-          className="type-h2 text-foreground mb-4 md:mb-6"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <h1 className="type-h2 text-foreground mb-4 md:mb-6 obs">
           {title}
-        </motion.h1>
-        <motion.p
-          className="type-lede"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
+        </h1>
+        <p className="type-lede obs" style={{ transitionDelay: "0.1s" }}>
           {description}
-        </motion.p>
+        </p>
       </div>
     </section>
   );

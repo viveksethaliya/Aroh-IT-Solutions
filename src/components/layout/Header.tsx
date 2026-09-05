@@ -74,8 +74,8 @@ export function Header() {
 
               <div 
                 className={cn(
-                  "w-[1px] h-[24px] bg-border mx-[20px] transition-opacity duration-300",
-                  isScrolled ? "opacity-100" : "opacity-0"
+                  "w-[1px] h-[24px] bg-border mx-[20px] transition-all duration-300",
+                  isScrolled ? "opacity-100 visible" : "opacity-0 invisible"
                 )} 
                 aria-hidden="true" 
               />
@@ -103,8 +103,8 @@ export function Header() {
                   // desktop: only show when scrolled
                   "max-[880px]:hidden",
                   isScrolled 
-                    ? "opacity-100 translate-y-0 pointer-events-auto" 
-                    : "opacity-0 -translate-y-[10px] pointer-events-none"
+                    ? "opacity-100 translate-y-0 visible" 
+                    : "opacity-0 -translate-y-[10px] invisible"
                 )}
               >
                 Start a project

@@ -48,7 +48,7 @@ export function ProcessRail() {
           {stages.map((stage) => (
             <div 
               key={stage.num}
-              className="relative p-[clamp(26px,2.8vw,42px)_clamp(22px,2.2vw,34px)_clamp(60px,6vw,82px)] group [box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:[&:nth-child(n+3)]:max-lg:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:[&:nth-child(even)]:max-lg:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] lg:[&+&]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] first:[box-shadow:none!important]"
+              className="relative p-[clamp(26px,2.8vw,42px)_clamp(22px,2.2vw,34px)_clamp(60px,6vw,82px)] group [&:not(:first-child)]:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:max-lg:[&:nth-child(2)]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] md:max-lg:[&:nth-child(3)]:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055)] md:max-lg:[&:nth-child(4)]:[box-shadow:inset_0_1px_0_rgba(0,0,0,.85),inset_0_2px_0_rgba(255,255,255,.055),inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] lg:[&:nth-child(n+2)]:[box-shadow:inset_1px_0_0_rgba(0,0,0,.85),inset_2px_0_0_rgba(255,255,255,.055)] lg:[&:first-child]:[box-shadow:none]"
             >
 
 

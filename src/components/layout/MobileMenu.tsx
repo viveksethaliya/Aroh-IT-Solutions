@@ -67,8 +67,9 @@ export function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
       aria-modal="true"
       aria-label="Mobile navigation"
       tabIndex={-1}
+      inert={!isOpen ? true : undefined}
       className={cn(
-        "fixed top-[74px] right-0 bottom-0 left-0 z-40 bg-background flex flex-col justify-between overflow-y-auto outline-none",
+        "fixed top-[74px] right-0 bottom-0 left-0 z-40 bg-background flex flex-col justify-between overflow-y-auto outline-none focus-visible:outline-none",
         "transition-transform duration-[280ms] ease-[cubic-bezier(.2,.7,.25,1)] motion-reduce:transition-none",
         isOpen ? "translate-y-0" : "-translate-y-full pointer-events-none"
       )}

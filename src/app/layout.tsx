@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -9,9 +9,8 @@ import { Chatbot } from "@/components/ui/Chatbot";
 import { Toaster } from "@/components/ui/sonner";
 import { RevealInit } from "@/components/ui/RevealInit";
 
-const archivo = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
+const archivo = localFont({
+  src: "./Archivo-Subset.woff2",
   variable: "--font-sans",
   display: "swap",
 });
@@ -60,8 +59,8 @@ export default function RootLayout({
           <RevealInit />
           <Toaster richColors position="top-center" />
         </ThemeProvider>
-        {/* Render Google Analytics only if ID is provided and not a placeholder */}
-        {process.env.NEXT_PUBLIC_GA_ID && process.env.NEXT_PUBLIC_GA_ID !== "G-XXXXXXXXXX" && (
+        {/* Render Google Analytics only if ID is a valid GA4 measurement ID */}
+        {process.env.NEXT_PUBLIC_GA_ID && process.env.NEXT_PUBLIC_GA_ID.startsWith("G-") && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
       </body>

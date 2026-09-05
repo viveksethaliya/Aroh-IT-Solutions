@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
@@ -7,7 +6,22 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     <textarea
       data-slot="textarea"
       className={cn(
-        "flex field-sizing-content min-h-16 w-full rounded-lg squircle squircle-sm border border-input bg-transparent px-2.5 py-2 text-base transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40",
+        "flex w-full min-h-[132px]",
+        "rounded-[4px]",
+        "border-0 bg-input",
+        "px-3 py-2",
+        "text-base text-foreground md:text-sm",
+        "placeholder:text-muted-foreground",
+        "transition-[box-shadow] duration-[250ms]",
+        "outline-none",
+        "resize-vertical",
+        // recessed well at rest
+        "[box-shadow:var(--recess)]",
+        // focus: recess + 2px ring outside
+        "focus:[box-shadow:var(--recess),0_0_0_2px_var(--ring)]",
+        // error state: recess + 2px var(--foreground) outline
+        "aria-invalid:[box-shadow:var(--recess),0_0_0_2px_var(--foreground)]",
+        "disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}

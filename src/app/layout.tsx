@@ -1,29 +1,28 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Archivo } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { Chatbot } from "@/components/ui/Chatbot";
+import { Toaster } from "@/components/ui/sonner";
+import { RevealInit } from "@/components/ui/RevealInit";
 
-const inter = Inter({
+const archivo = Archivo({
   subsets: ["latin"],
+  axes: ["wdth"],
   variable: "--font-sans",
-});
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-heading",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Aroh IT Solutions | Modern IT Services & Consulting",
-  description: "Providing top-notch IT solutions, web development, and digital transformation services to help your business grow.",
+  title: "Aroh IT Solutions | Product Engineering Studio",
+  description: "We build the platforms and internal systems that companies run on — then stay on to keep them running. No handover into a vacuum.",
   verification: {
     google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_KEY",
   },
 };
-
-import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -33,15 +32,23 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geist.variable} h-full antialiased scroll-smooth`}
+      className={`${archivo.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-        <Header />
-        <Toaster richColors position="top-center" />
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-foreground selection:text-background">
+        <ThemeProvider
+          defaultTheme="dark"
+          attribute="class"
+        >
+          <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <Chatbot />
+          <RevealInit />
+          <Toaster richColors position="top-center" />
+        </ThemeProvider>
         {/* Placeholder for Google Analytics. Replace G-XXXXXXXXXX with actual ID */}
         <GoogleAnalytics gaId="G-XXXXXXXXXX" />
       </body>

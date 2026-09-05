@@ -1,149 +1,60 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Home, Info, Briefcase, Mail, MessageSquare, FolderOpen } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Chatbot } from "@/components/ui/Chatbot";
 
 export function Header() {
-  const { scrollY } = useScroll();
-  const pathname = usePathname();
-  const [isVisible, setIsVisible] = useState(pathname !== "/");
-  const [hasHovered, setHasHovered] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-
-  const checkVisibility = (currentScrollY: number) => {
-    if (isChatOpen) {
-      setIsVisible(true);
-      return;
-    }
-
-    // Check if we are at the bottom of the page (within 50px)
-    const isAtBottom =
-      window.innerHeight + currentScrollY >= document.documentElement.scrollHeight - 50;
-
-    if (isAtBottom) {
-      setIsVisible(false);
-      return;
-    }
-
-    if (pathname === "/") {
-      setIsVisible(currentScrollY > 100);
-    } else {
-      setIsVisible(true);
-    }
-  };
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    checkVisibility(window.scrollY);
-
-    // Check on resize as document height or window height might change
-    const handleResize = () => checkVisibility(window.scrollY);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [pathname, isChatOpen]);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    checkVisibility(latest);
-  });
-
-  const navLinks = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "About", href: "/about", icon: Info },
-    { name: "Services", href: "/services", icon: Briefcase },
-    { name: "Portfolio", href: "/portfolio", icon: FolderOpen },
-    { name: "Contact", href: "/contact", icon: Mail },
-  ];
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <>
-      <AnimatePresence>
-        {isVisible && (
-          <motion.header
-          initial={{ opacity: 0, y: 50, x: "-50%" }}
-          animate={{ opacity: 1, y: 0, x: "-50%" }}
-          exit={{ opacity: 0, y: 50, x: "-50%" }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="fixed bottom-6 left-1/2 z-50 w-max"
-          onMouseEnter={() => setHasHovered(true)}
-        >
-          <div className="flex h-14 items-center gap-2 rounded-full bg-background/95 border border-border/50 shadow-2xl backdrop-blur-xl px-3 py-2">
+    <header 
+      id="hdr"
+      className={cn(
+        "hdr fixed top-0 left-0 right-0 z-50 h-[74px] transition-[background,box-shadow,transform] duration-[400ms] ease-[cubic-bezier(.2,.7,.25,1)]",
+        isScrolled ? "stuck" : ""
+      )}
+    >
+      <div className="mx-auto w-full max-w-[1340px] px-[clamp(20px,4vw,60px)] h-full flex items-center justify-between">
+        <Link href="/" className="flex items-baseline gap-[.55rem] text-foreground hover:opacity-80 transition-opacity">
+          <b className="text-[1.35rem] tracking-[-.01em]" style={{ fontVariationSettings: '"wdth" 78,"wght" 700' }}>Aroh</b>
+          <span className="text-[.75rem] text-muted-foreground hidden sm:inline-block" style={{ fontVariationSettings: '"wdth" 100,"wght" 400' }}>IT Solutions</span>
+        </Link>
+        
+        {/* Nav — hidden below 880px */}
+        <nav className="flex items-center gap-[clamp(16px,2vw,32px)]" style={{ display: undefined }} aria-label="Main navigation">
+          <Link href="/services" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Capabilities</Link>
+          <Link href="/#process" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">How we work</Link>
+          <Link href="/portfolio" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Work</Link>
+          <Link href="/contact" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Contact</Link>
 
-            {/* Standard Navigation Links */}
-            <div className="flex items-center gap-1 md:gap-2">
-              {navLinks.map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className={cn(
-                      "flex items-center justify-center p-2.5 transition-all relative group rounded-full aspect-square",
-                      isActive
-                        ? "bg-foreground text-background shadow-md" // Active state: tight black round
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    )}
-                    aria-label={link.name}
-                  >
-                    <link.icon className="h-5 w-5" />
-
-                    {/* Tooltip on hover */}
-                    <span className="absolute bottom-full mb-3 scale-0 rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background shadow-lg transition-all group-hover:scale-100 whitespace-nowrap">
-                      {link.name}
-                      {/* Triangle for tooltip */}
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="flex items-center gap-2 pl-2">
-              {/* Separator */}
-              <div className="w-[1px] h-6 bg-border"></div>
-
-              {/* Special Chatbot Trigger Button */}
-              <button
-                onClick={() => setIsChatOpen(!isChatOpen)}
-                className="flex items-center justify-center p-2.5 text-primary transition-all relative group rounded-full hover:bg-primary/10 aspect-square"
-                aria-label="Aroh Assistant"
-              >
-                {/* Shining/Ping Effect */}
-                <div className={cn("absolute inset-1 rounded-full bg-primary/30", (hasHovered || isChatOpen) ? "hidden" : "animate-ping")}></div>
-
-                <MessageSquare className="h-5 w-5 relative z-10" />
-
-                {/* Permanent Pop Message (Hides permanently on navbar hover) */}
-                <div className={cn(
-                  "absolute bottom-full mb-2 transition-transform origin-bottom duration-300 pointer-events-none z-20 ",
-                  (hasHovered || isChatOpen) ? "scale-0" : "scale-100"
-                )}>
-                  <div className="relative animate-bounce">
-                    <div className="relative bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-bold shadow-xl whitespace-nowrap border border-white z-10">
-                      Aroh Assistant
-                    </div>
-                    <div className="absolute -bottom-[8px] left-1/2 -translate-x-1/2 w-6 h-6 bg-primary rotate-45 rounded-br-[3px] border-r border-b border-white z-0" />
-                  </div>
-                </div>
-
-                {/* Standard Tooltip that appears on hover */}
-                <span className="absolute bottom-full mb-3 scale-0 rounded-md bg-foreground px-3 py-1.5 text-xs font-medium text-background shadow-lg transition-all group-hover:scale-100 whitespace-nowrap z-20">
-                  Chat with us
-                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-t-foreground" />
-                </span>
-              </button>
-            </div>
-
-          </div>
-        </motion.header>
-        )}
-      </AnimatePresence>
-
-      {/* Render the Chatbot outside AnimatePresence so it doesn't unmount when header hides */}
-      <Chatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
-    </>
+          {/* CTA: scroll-gated on desktop, always visible on mobile (≤880px) */}
+          <Link 
+            href="/contact" 
+            className={cn(
+              buttonVariants({ variant: "plate", size: "sm" }),
+              "transition-all duration-300 transform",
+              // desktop: only show when scrolled
+              "max-[880px]:opacity-100 max-[880px]:translate-y-0 max-[880px]:pointer-events-auto",
+              isScrolled 
+                ? "opacity-100 translate-y-0 pointer-events-auto" 
+                : "opacity-0 -translate-y-[10px] pointer-events-none max-[880px]:opacity-100 max-[880px]:translate-y-0 max-[880px]:pointer-events-auto"
+            )}
+          >
+            Start a project
+          </Link>
+        </nav>
+      </div>
+    </header>
   );
 }

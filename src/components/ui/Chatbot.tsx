@@ -2,10 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Bot, User, MessageSquare, Send } from "lucide-react";
+import { Send, X, Bot, User } from "lucide-react";
 import { Button } from "./button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
 
@@ -110,7 +109,7 @@ const STAGES: Record<string, { text: string; options: Option[] }> = {
 
 const INTENTS = [
   { category: "services", phrases: ["what service do you offer", "web development", "ecommerce", "seo", "services", "what do you do", "can you build", "website", "design"] },
-  { category: "pricing", phrases: ["pricing", "cost", "how much", "quote", "budget", "expensive", "rates", "price", "estimate"] },
+  { category: "pricing", phrases: ["pricing", "cost", "how much", "quote", "quote", "budget", "expensive", "rates", "price", "estimate"] },
   { category: "portfolio", phrases: ["portfolio", "work", "examples", "past projects", "built", "show me", "projects", "clients"] },
   { category: "contact", phrases: ["contact", "talk", "human", "phone", "email", "support", "help", "reach", "hire", "message"] },
 ];
@@ -118,52 +117,43 @@ const INTENTS = [
 const fuse = new Fuse(INTENTS, {
   keys: ["phrases"],
   includeScore: true,
-  threshold: 0.4, // low threshold allows typos but prevents completely wrong matches
+  threshold: 0.4, 
 });
 
 const MAX_INTERACTIONS = 7;
 
-interface ChatbotProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+const generateId = () => Date.now().toString();
 
-export function Chatbot({ isOpen, onClose }: ChatbotProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [interactionCount, setInteractionCount] = useState(0);
+export function Chatbot() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("aroh_chat_history");
+      if (saved) return JSON.parse(saved);
+    }
+    return [{
+      id: "init",
+      sender: "bot",
+      text: STAGES.stage1.text,
+      options: STAGES.stage1.options,
+    }];
+  });
+  const [interactionCount, setInteractionCount] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("aroh_chat_count");
+      if (saved) return parseInt(saved, 10);
+    }
+    return 0;
+  });
   const [inputText, setInputText] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Load state from localStorage on mount
-  useEffect(() => {
-    const savedMessages = localStorage.getItem("aroh_chat_history");
-    const savedCount = localStorage.getItem("aroh_chat_count");
-
-    if (savedMessages && savedCount) {
-      setMessages(JSON.parse(savedMessages));
-      setInteractionCount(parseInt(savedCount, 10));
-    } else {
-      // Initial greeting
-      const initMessage: Message = {
-        id: Date.now().toString(),
-        sender: "bot",
-        text: STAGES.stage1.text,
-        options: STAGES.stage1.options,
-      };
-      setMessages([initMessage]);
-      localStorage.setItem("aroh_chat_history", JSON.stringify([initMessage]));
-      localStorage.setItem("aroh_chat_count", "0");
-    }
-  }, []);
-
-  // Save state on every change
   useEffect(() => {
     if (messages.length > 0) {
       localStorage.setItem("aroh_chat_history", JSON.stringify(messages));
       localStorage.setItem("aroh_chat_count", interactionCount.toString());
     }
-    // Auto scroll to bottom
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
@@ -172,16 +162,14 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
   const handleOptionClick = (option: Option) => {
     if (interactionCount >= MAX_INTERACTIONS) return;
 
-    // Remove options from the previous bot message so they can't be clicked again
     setMessages((prev) =>
       prev.map((msg, idx) =>
         idx === prev.length - 1 ? { ...msg, options: undefined } : msg
       )
     );
 
-    // Add user message
     const userMsg: Message = {
-      id: Date.now().toString(),
+      id: generateId(),
       sender: "user",
       text: option.label,
     };
@@ -190,16 +178,14 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
     const newCount = interactionCount + 1;
     setInteractionCount(newCount);
 
-    // Handle redirection if option has a link
     if (option.link) {
       setTimeout(() => {
-        onClose();
+        setIsOpen(false);
         router.push(option.link as string);
       }, 500);
       return;
     }
 
-    // Add bot response with artificial delay
     setTimeout(() => {
       if (newCount >= MAX_INTERACTIONS) {
         setMessages((prev) => [
@@ -226,7 +212,7 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
           },
         ]);
       }
-    }, 600); // 600ms delay feels natural
+    }, 600);
   };
 
   const handleTextSubmit = () => {
@@ -235,16 +221,14 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
     const userText = inputText.trim();
     setInputText("");
 
-    // Remove options from previous message
     setMessages((prev) =>
       prev.map((msg, idx) =>
         idx === prev.length - 1 ? { ...msg, options: undefined } : msg
       )
     );
 
-    // Add user message
     const userMsg: Message = {
-      id: Date.now().toString(),
+      id: generateId(),
       sender: "user",
       text: userText,
     };
@@ -267,13 +251,11 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
         return;
       }
 
-      // NLP Fuzzy Match
       const searchResults = fuse.search(userText);
-      let nextStageKey = "stage1"; // default fallback
+      let nextStageKey = "stage1";
       let responseText = "I'm just a simple assistant and I didn't quite catch that. Here are some topics I can help you with:";
 
       if (searchResults.length > 0 && searchResults[0].score! < 0.4) {
-        // Confident match found!
         nextStageKey = searchResults[0].item.category;
         responseText = STAGES[nextStageKey].text;
       }
@@ -292,127 +274,129 @@ export function Chatbot({ isOpen, onClose }: ChatbotProps) {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 50, scale: 0.95 }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          className={cn(
-            "fixed z-[100] flex flex-col bg-background shadow-2xl overflow-hidden border border-border/50",
-            // Mobile: full screen
-            "inset-0 w-full h-[100dvh] rounded-none",
-            // PC: expanding upwards window anchored to the bottom button
-            "md:inset-auto md:bottom-24 md:left-1/2 md:-translate-x-1/2 md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-120px)] md:rounded-2xl"
-          )}
-        >
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-primary text-primary-foreground">
-            <div className="flex items-center gap-3">
-              <div className="bg-white/20 p-2 rounded-full">
-                <Bot className="w-5 h-5" />
-              </div>
-              <div>
-                <h3 className="font-bold text-sm">Aroh Assistant</h3>
-              </div>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-white/20 rounded-full transition-colors"
-              aria-label="Close Chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Chat Area */}
-          <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-4 space-y-6 bg-muted/20 pb-8"
-          >
-            {messages.map((msg, index) => (
-              <div key={msg.id} className="flex flex-col gap-2">
-                <div
-                  className={cn(
-                    "flex max-w-[85%] items-end gap-2",
-                    msg.sender === "user" ? "self-end flex-row-reverse" : "self-start"
-                  )}
-                >
-                  <div
-                    className={cn(
-                      "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
-                      msg.sender === "user" ? "bg-primary" : "bg-muted border border-border"
-                    )}
-                  >
-                    {msg.sender === "user" ? (
-                      <User className="w-4 h-4 text-primary-foreground" />
-                    ) : (
-                      <Bot className="w-4 h-4 text-foreground" />
-                    )}
-                  </div>
-                  <div
-                    className={cn(
-                      "px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm",
-                      msg.sender === "user"
-                        ? "bg-primary text-primary-foreground rounded-br-sm"
-                        : "bg-background border border-border rounded-bl-sm"
-                    )}
-                  >
-                    {msg.text}
-                  </div>
-                </div>
-
-                {/* Options (Only shown on the last bot message) */}
-                {msg.options && index === messages.length - 1 && (
-                  <div className="flex flex-col gap-2 mt-2 ml-10 max-w-[85%]">
-                    {msg.options.map((opt, i) => (
-                      <Button
-                        key={i}
-                        variant="outline"
-                        size="sm"
-                        className="justify-start h-auto py-2 px-3 text-left w-full border-primary/20 hover:border-primary hover:bg-primary/5 whitespace-normal"
-                        onClick={() => handleOptionClick(opt)}
-                      >
-                        {opt.label}
-                      </Button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            {/* Show remaining interactions hint if close to limit */}
-            {interactionCount > 0 && interactionCount < MAX_INTERACTIONS && messages[messages.length - 1]?.sender === "bot" && (
-              <p className="text-center text-[10px] text-muted-foreground/50 pt-4">
-                {MAX_INTERACTIONS - interactionCount} interactions remaining
-              </p>
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 50, scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            className={cn(
+              "fixed z-[100] flex flex-col bg-background shadow-2xl overflow-hidden border border-border/50",
+              "inset-0 w-full h-[100dvh] rounded-none",
+              "md:inset-auto md:bottom-24 md:left-1/2 md:-translate-x-1/2 md:w-[380px] md:h-[600px] md:max-h-[calc(100vh-120px)] md:rounded-2xl"
             )}
-          </div>
+          >
+            <div className="flex items-center justify-between p-4 bg-primary text-primary-foreground">
+              <div className="flex items-center gap-3">
+                <div className="bg-background/20 p-2 rounded-full">
+                  <Bot className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm">Aroh Assistant</h3>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-2 hover:bg-border rounded-full transition-colors"
+                aria-label="Close Chat"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-          {/* Footer Input Area */}
-          <div className="p-4 bg-background border-t border-border flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Type a message..."
-              className="flex-1 bg-muted px-4 py-2.5 rounded-full text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleTextSubmit();
-              }}
-              disabled={interactionCount >= MAX_INTERACTIONS}
-            />
-            <button
-              onClick={handleTextSubmit}
-              disabled={!inputText.trim() || interactionCount >= MAX_INTERACTIONS}
-              className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+            <div
+              ref={scrollRef}
+              className="flex-1 overflow-y-auto p-4 space-y-6 bg-muted/20 pb-8"
             >
-              <Send className="w-4 h-4" />
-            </button>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              {messages.map((msg, index) => (
+                <div key={msg.id} className="flex flex-col gap-2">
+                  <div
+                    className={cn(
+                      "flex max-w-[85%] items-end gap-2",
+                      msg.sender === "user" ? "self-end flex-row-reverse" : "self-start"
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
+                        msg.sender === "user" ? "bg-primary" : "bg-muted border border-border"
+                      )}
+                    >
+                      {msg.sender === "user" ? (
+                        <User className="w-4 h-4 text-primary-foreground" />
+                      ) : (
+                        <Bot className="w-4 h-4 text-foreground" />
+                      )}
+                    </div>
+                    <div
+                      className={cn(
+                        "px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-sm",
+                        msg.sender === "user"
+                          ? "bg-primary text-primary-foreground rounded-br-sm"
+                          : "bg-background border border-border rounded-bl-sm"
+                      )}
+                    >
+                      {msg.text}
+                    </div>
+                  </div>
+
+                  {msg.options && index === messages.length - 1 && (
+                    <div className="flex flex-col gap-2 mt-2 ml-10 max-w-[85%]">
+                      {msg.options.map((opt, i) => (
+                        <Button
+                          key={i}
+                          variant="plate"
+                          size="sm"
+                          className="justify-start h-auto py-2 px-3 text-left w-full border-primary/20 hover:border-primary hover:bg-primary/5 whitespace-normal"
+                          onClick={() => handleOptionClick(opt)}
+                        >
+                          {opt.label}
+                        </Button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="p-4 bg-background border-t border-border flex items-center gap-2">
+              <input
+                type="text"
+                placeholder="Type a message..."
+                className="flex-1 bg-muted px-4 py-2.5 rounded-full text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleTextSubmit();
+                }}
+                disabled={interactionCount >= MAX_INTERACTIONS}
+              />
+              <button
+                onClick={handleTextSubmit}
+                disabled={!inputText.trim() || interactionCount >= MAX_INTERACTIONS}
+                className="w-10 h-10 rounded-full flex items-center justify-center text-background disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+                style={{ background: "linear-gradient(180deg,var(--foreground),var(--n-800))", boxShadow: "0 1px 0 rgba(255,255,255,.5) inset" }}
+              >
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed bottom-6 right-6 w-[52px] h-[52px] rounded-full flex items-center justify-center z-50 transition-[transform,box-shadow,background] duration-[180ms,250ms,250ms] hover:-translate-y-px active:translate-y-px"
+        style={{ 
+          background: "linear-gradient(180deg,var(--foreground),var(--n-800))", 
+          boxShadow: "0 1px 0 rgba(255,255,255,.5) inset, var(--lift-2)" 
+        }}
+        aria-label="Toggle Chatbot"
+      >
+        {isOpen ? <X className="w-5 h-5 text-background" /> : <Bot className="w-5 h-5 text-background" />}
+      </button>
+    </>
   );
 }

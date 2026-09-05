@@ -1,50 +1,30 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-primary text-primary-foreground">
-      {/* Background SVG wave patterns moving in a circular motion */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Wave 1 - spinning clockwise */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180vmax] h-[180vmax] opacity-[0.06] animate-[spin_80s_linear_infinite]">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor" />
-          </svg>
-        </div>
-        {/* Wave 2 - spinning counter-clockwise for dynamic morphing overlay */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vmax] h-[150vmax] opacity-[0.03] animate-[spin_55s_linear_infinite_reverse]">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor" />
-          </svg>
-        </div>
-      </div>
+    <section 
+      className="py-24 relative overflow-hidden text-foreground"
+      style={{ background: "var(--raised)", boxShadow: "var(--bevel-strong), var(--lift-2), inset 0 1px 0 rgba(255,255,255,.06)" }}
+    >
       
-      <div className="container relative z-10 mx-auto px-4 md:px-8 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto space-y-8"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-            Ready to Transform Your Business?
+      <div className="wrap relative z-10">
+        <div className="max-w-3xl space-y-8 obs">
+          <h2 className="type-h2">
+            Tell us what is breaking
           </h2>
-          <p className="text-xl text-primary-foreground/80 leading-relaxed">
-            Let&apos;s collaborate to build scalable, secure, and innovative solutions that drive your business forward.
+          <p className="type-body text-muted-foreground pb-[1.2rem] max-w-[65ch]">
+            Send the shape of the problem and we will reply within one business day 
+            with a first read and an honest note on whether we are the right team for it.
           </p>
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/contact" className={buttonVariants({ size: "lg", variant: "secondary", className: "w-full sm:w-auto h-14 px-8 text-base group" })}>
-              Start Your Project Today
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+          <div className="pt-4 flex flex-col sm:flex-row items-start gap-4">
+            <Link href="/contact" className={buttonVariants({ variant: "solid" })}>
+              Start a project
             </Link>
           </div>
-        </motion.div>
+          </div>
       </div>
     </section>
   );

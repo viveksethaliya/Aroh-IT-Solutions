@@ -1,10 +1,11 @@
 import { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight, Globe, Globe2, Laptop, ShoppingBag } from "lucide-react";
+import { Globe } from "lucide-react";
+import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SubpageHero } from "@/components/layout/SubpageHero";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { CTASection } from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
   title: "Our Portfolio | Aroh IT Solutions",
@@ -52,10 +53,10 @@ const projects = [
 
 export default function PortfolioPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       {/* Hero Section */}
       <SubpageHero 
-        title={<>Our <span className="text-blue-300">Portfolio</span></>}
+        title={<>Our Portfolio</>}
         description="Discover how we help brands grow, digitize their operations, and build high-performance web products that engage customers globally."
       />
 
@@ -66,16 +67,25 @@ export default function PortfolioPage() {
             {projects.map((project, index) => (
               <FadeIn key={index} delay={index * 0.1} className="flex flex-col h-full">
                 <Card 
-                  className="group flex flex-col justify-between overflow-hidden border border-border/50 bg-background shadow-modern hover:shadow-lg transition-all duration-300 rounded-lg h-full"
+                  className="group flex flex-col justify-between h-full bg-transparent shadow-none"
+                  style={{ boxShadow: "none" }}
                 >
                   <div>
                     {/* Image Container */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-muted border-b border-border/50">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500 rounded-t-lg"
-                        loading="lazy"
+                    <div 
+                      className="relative aspect-[16/10] overflow-hidden bg-plate transition-all duration-[400ms] ease-[cubic-bezier(.2,.7,.25,1)] group-hover:-translate-y-[3px]"
+                      style={{ 
+                        borderRadius: "10px", 
+                        boxShadow: "var(--bevel), var(--lift-1)" 
+                      }}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover object-top img-machined"
+                        priority={false}
                       />
                     </div>
 
@@ -86,7 +96,7 @@ export default function PortfolioPage() {
                         </div>
                         <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">{project.displayUrl}</span>
                       </div>
-                      <CardTitle className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+                      <CardTitle className="type-h3 text-foreground transition-colors mt-2">
                         {project.title}
                       </CardTitle>
                     </CardHeader>
@@ -101,7 +111,8 @@ export default function PortfolioPage() {
                         {project.tags.map((tag, tIndex) => (
                           <span 
                             key={tIndex} 
-                            className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground"
+                            className="px-[.7rem] py-[.34rem] rounded-[var(--radius-sm)] text-[.8125rem] text-muted-foreground bg-plate"
+                            style={{ boxShadow: "var(--recess)" }}
                           >
                             {tag}
                           </span>
@@ -117,12 +128,11 @@ export default function PortfolioPage() {
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className={buttonVariants({ 
-                        variant: "outline", 
-                        className: "w-full justify-between hover:bg-primary hover:text-white border-primary/20 hover:border-primary text-primary transition-all duration-300 group-hover:shadow-sm" 
+                        variant: "plate", 
+                        className: "w-full justify-between" 
                       })}
                     >
                       <span>Visit Website</span>
-                      <ArrowUpRight className="h-4 w-4" />
                     </a>
                   </div>
                 </Card>
@@ -132,18 +142,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-[#003366] text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-white mb-4">Have a Project in Mind?</h2>
-          <p className="text-white/80 max-w-xl mx-auto mb-8">
-            Let's collaborate to build something amazing. Our team is ready to transform your ideas into functional, beautifully designed web products.
-          </p>
-          <Link href="/contact" className={buttonVariants({ size: "lg", className: "bg-[#F8F9FA] text-[#003366] hover:bg-[#F8F9FA]/90" })}>
-            Contact Us Today
-          </Link>
-        </div>
-      </section>
+      <CTASection />
     </div>
   );
 }

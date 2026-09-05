@@ -30,14 +30,14 @@ export async function POST(req: Request) {
       <html>
         <head>
           <style>
-            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; }
-            .header { background-color: #003366; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; margin:-20px -20px 20px -20px; }
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #FAFAFA; background: #000000; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #262626; border-radius: 10px; background: #0A0A0A; }
+            .header { background-color: #171717; color: #FAFAFA; padding: 20px; text-align: center; border-radius: 10px 10px 0 0; margin:-20px -20px 20px -20px; border-bottom: 1px solid #262626; }
             .content { padding: 10px; }
-            .label { font-weight: bold; color: #0066CC; font-size: 14px; text-transform: uppercase; margin-bottom: 4px; display: block; }
-            .value { margin-bottom: 20px; font-size: 16px; background: #f8fafc; padding: 12px; border-radius: 4px; border-left: 4px solid #0066CC;}
-            .message-body { background: #f8fafc; padding: 15px; border-radius: 4px; white-space: pre-wrap; font-size: 16px; border-left: 4px solid #0066CC; }
-            .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #64748b; }
+            .label { font-weight: bold; color: #A3A3A3; font-size: 12px; text-transform: uppercase; margin-bottom: 4px; display: block; letter-spacing: 0.05em; }
+            .value { margin-bottom: 20px; font-size: 16px; background: #000000; padding: 14px; border-radius: 4px; border: 1px solid #262626; color: #FAFAFA; }
+            .message-body { background: #000000; padding: 15px; border-radius: 4px; white-space: pre-wrap; font-size: 16px; border: 1px solid #262626; color: #FAFAFA; }
+            .footer { margin-top: 30px; text-align: center; font-size: 12px; color: #525252; }
           </style>
         </head>
         <body>
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
               
               <div>
                 <span class="label">Email Address</span>
-                <div class="value"><a href="mailto:${email}" style="color: #0066CC;">${email}</a></div>
+                <div class="value"><a href="mailto:${email}" style="color: #FAFAFA; text-decoration: underline;">${email}</a></div>
               </div>
 
               <div>

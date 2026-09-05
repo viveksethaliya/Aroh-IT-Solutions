@@ -1,63 +1,64 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Share2, Globe, MessageCircle } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-background text-muted-foreground border-t">
-      <div className="container mx-auto px-4 md:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">Aroh IT Solutions</h3>
-            <p className="text-sm leading-relaxed">
-              Empowering businesses with cutting-edge technology solutions. We deliver innovative web and software services tailored to your needs.
+    <footer className="bg-background" style={{ paddingTop: "clamp(46px,7vh,80px)", paddingBottom: "34px" }}>
+      <div className="wrap">
+        <div 
+          className="grid gap-[clamp(24px,4vw,50px)] pb-11"
+          style={{ gridTemplateColumns: "1.6fr repeat(3, minmax(0,1fr))" }}
+        >
+          {/* Brand */}
+          <div>
+            <Link href="/" className="flex items-baseline gap-[.55rem] mb-4">
+              <b className="text-[1.35rem] tracking-[-.01em] text-foreground" style={{ fontVariationSettings: '"wdth" 78,"wght" 700' }}>Aroh</b>
+              <span className="text-[.75rem] text-muted-foreground" style={{ fontVariationSettings: '"wdth" 100,"wght" 400' }}>IT Solutions</span>
+            </Link>
+            <p className="type-meta max-w-[34ch]">
+              A product engineering studio building operational software for companies that have outgrown their tools.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
-              <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="/services" className="hover:text-primary transition-colors">Services</Link></li>
-              <li><Link href="/portfolio" className="hover:text-primary transition-colors">Portfolio</Link></li>
-              <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+          {/* Capabilities */}
+          <div>
+            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Capabilities</h4>
+            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
+              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Web platforms</Link></li>
+              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Mobile applications</Link></li>
+              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Systems integration</Link></li>
+              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Infrastructure</Link></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Contact Us</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span>123 Tech Park, Innovation City</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>+1 (555) 123-4567</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <span>info@shreeitsolutions.com</span>
-              </li>
+          {/* Studio */}
+          <div>
+            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Studio</h4>
+            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
+              <li><Link href="/#process" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">How we work</Link></li>
+              <li><Link href="/portfolio" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Work</Link></li>
+              <li><Link href="/contact" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Contact</Link></li>
+              <li><Link href="/" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Careers</Link></li>
             </ul>
           </div>
 
-          {/* Social */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-foreground">Follow Us</h4>
-            <div className="flex space-x-4">
-              <Link href="#" className="hover:text-primary transition-colors"><Globe className="h-5 w-5" /></Link>
-              <Link href="#" className="hover:text-primary transition-colors"><Share2 className="h-5 w-5" /></Link>
-              <Link href="#" className="hover:text-primary transition-colors"><MessageCircle className="h-5 w-5" /></Link>
-            </div>
+          {/* Elsewhere */}
+          <div>
+            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Elsewhere</h4>
+            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">GitHub</a></li>
+              <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Dribbble</a></li>
+            </ul>
           </div>
         </div>
-        
-        <div className="mt-12 pt-8 border-t border-border text-center text-sm">
-          <p>&copy; {new Date().getFullYear()} Aroh IT Solutions. All rights reserved.</p>
+
+        {/* Base */}
+        <div 
+          className="flex justify-between flex-wrap gap-4 pt-[26px]"
+          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.07)" }}
+        >
+          <p className="type-meta m-0">&copy; 2026 Aroh IT Solutions</p>
+          <p className="type-meta m-0">Privacy &nbsp;&nbsp; Terms</p>
         </div>
       </div>
     </footer>

@@ -4,14 +4,48 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
-import { SubpageHero } from "@/components/layout/SubpageHero";
+
+/* ── Field primitive ─────────────────────────────────────────────────── */
+function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <label style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".45rem" }}>
+        {label}
+      </label>
+      {children}
+      {error && (
+        <p className="flex items-center gap-1.5 mt-1.5" style={{ fontSize: ".8125rem", color: "var(--foreground)" }}>
+          <AlertCircle className="h-4 w-4 flex-shrink-0" />
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/* ── Shared well styles ─────────────────────────────────────────────── */
+const wellStyle: React.CSSProperties = {
+  width: "100%",
+  background: "var(--input)",
+  border: 0,
+  borderRadius: "var(--radius-sm, 4px)",
+  padding: ".95rem 1rem",
+  color: "var(--foreground)",
+  fontSize: "1rem",
+  boxShadow: "var(--recess)",
+  transition: "box-shadow .25s cubic-bezier(.2,.7,.25,1)",
+  outline: "none",
+};
+
+const wellErrorStyle: React.CSSProperties = {
+  ...wellStyle,
+  boxShadow: "var(--recess), 0 0 0 2px var(--foreground)",
+};
+
+const wellFocusClass = "focus:ring-0 focus-visible:outline-none";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,17 +61,13 @@ export default function ContactPage() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-
-    // Show a loading toast
     const toastId = toast.loading("Sending your message...");
-
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
       if (response.ok) {
         toast.success("Message Sent Successfully!", {
           id: toastId,
@@ -52,9 +82,11 @@ export default function ContactPage() {
         });
       }
     } catch (error) {
+      console.error("[Contact form] Submission failed:", error);
+      const msg = error instanceof Error ? error.message : "Unknown error";
       toast.error("Network Error", {
         id: toastId,
-        description: "Please check your internet connection and try again.",
+        description: `Could not reach the server (${msg}). Check your connection and try again, or email us directly at hello@arohit.in.`,
       });
     } finally {
       setIsSubmitting(false);
@@ -62,110 +94,138 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <SubpageHero 
-        title={<>Get in <span className="text-blue-300">Touch</span></>}
-        description="Have a project in mind or need assistance? Fill out the form below and our team will get back to you shortly."
-      />
+    <div className="flex flex-col">
+      {/* Contact section — bg-plate with top bevel, matching reference */}
+      <section
+        className="py-[clamp(80px,12vh,150px)] bg-plate"
+        style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,.06)" }}
+      >
+        <div className="wrap">
+          {/* Two-column grid: info left, form right */}
+          <div
+            className="grid items-start gap-[clamp(32px,6vw,90px)] max-[900px]:grid-cols-1"
+            style={{ gridTemplateColumns: "minmax(0,.85fr) minmax(0,1.15fr)" }}
+          >
 
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-
-            {/* Contact Information */}
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div>
-                <h2 className="text-3xl font-bold mb-4">Contact Information</h2>
-                <p className="text-muted-foreground mb-8">
-                  We are available for consulting, development projects, and partnerships. Reach out to us via any of the channels below.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background border border-border/50">
-                  <MapPin className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Our Office</h3>
-                    <p className="text-muted-foreground">123 Tech Park, Innovation City, 10001</p>
-                  </div>
+            {/* Left — heading + facts */}
+            <div>
+              <h1 className="type-h2 text-foreground mb-4" style={{ marginBottom: "1rem" }}>
+                Tell us what is breaking
+              </h1>
+              <p className="type-body">
+                Send the shape of the problem and we will reply within one business day
+                with a first read and an honest note on whether we are the right team for it.
+              </p>
+              <div className="grid gap-[1.4rem] mt-[2.2rem]">
+                <div>
+                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Email</span>
+                  <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>hello@arohitsolutions.com</strong>
                 </div>
-
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background border border-border/50">
-                  <Phone className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Phone Number</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                  </div>
+                <div>
+                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Phone</span>
+                  <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>+91 79 4000 1200</strong>
                 </div>
-
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-background border border-border/50">
-                  <Mail className="h-6 w-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-lg">Email Address</h3>
-                    <p className="text-muted-foreground">info@shreeitsolutions.com</p>
-                  </div>
+                <div>
+                  <span style={{ display: "block", fontSize: ".8125rem", color: "var(--muted-foreground)", marginBottom: ".2rem" }}>Studio</span>
+                  <strong style={{ fontVariationSettings: '"wdth" 100,"wght" 520', fontSize: "1.02rem" }}>Prahlad Nagar, Ahmedabad 380015</strong>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
-            {/* Contact Form */}
-            <motion.div
-              className="bg-background rounded-2xl p-8 border border-border shadow-sm"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
+            {/* Right — form with recessed wells */}
+            <form onSubmit={handleSubmit(onSubmit)} className="grid gap-[14px]">
 
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" placeholder="John Doe" {...register("name")} className={errors.name ? "border-destructive focus-visible:ring-destructive" : ""} />
-                    {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="john@example.com" {...register("email")} className={errors.email ? "border-destructive focus-visible:ring-destructive" : ""} />
-                    {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="How can we help you?" {...register("subject")} className={errors.subject ? "border-destructive focus-visible:ring-destructive" : ""} />
-                  {errors.subject && <p className="text-sm text-destructive">{errors.subject.message}</p>}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell us about your project..." className={`min-h-[150px] ${errors.message ? "border-destructive focus-visible:ring-destructive" : ""}`} {...register("message")} />
-                  {errors.message && <p className="text-sm text-destructive">{errors.message.message}</p>}
-                </div>
-
-                <div className="flex items-center space-x-2">
+              {/* Name + Email row */}
+              <div className="grid grid-cols-2 gap-[14px] max-[560px]:grid-cols-1">
+                <Field label="Name" error={errors.name?.message}>
                   <input
-                    type="checkbox"
-                    id="subscribe"
-                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                    {...register("subscribe")}
+                    id="name"
+                    placeholder="Your name"
+                    {...register("name")}
+                    aria-invalid={!!errors.name}
+                    className={wellFocusClass}
+                    style={errors.name ? wellErrorStyle : wellStyle}
                   />
-                  <Label htmlFor="subscribe" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    Receive news and updates from Aroh IT Solutions
-                  </Label>
-                </div>
+                </Field>
+                <Field label="Email" error={errors.email?.message}>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="you@company.com"
+                    {...register("email")}
+                    aria-invalid={!!errors.email}
+                    className={wellFocusClass}
+                    style={errors.email ? wellErrorStyle : wellStyle}
+                  />
+                </Field>
+              </div>
 
-                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </motion.div>
+              {/* Subject */}
+              <Field label="Subject" error={errors.subject?.message}>
+                <input
+                  id="subject"
+                  placeholder="What is this about?"
+                  {...register("subject")}
+                  aria-invalid={!!errors.subject}
+                  className={wellFocusClass}
+                  style={errors.subject ? wellErrorStyle : wellStyle}
+                />
+              </Field>
 
+              {/* Message */}
+              <Field label="Message" error={errors.message?.message}>
+                <textarea
+                  id="message"
+                  placeholder="What exists today, what should exist instead, and any date you are working towards."
+                  {...register("message")}
+                  aria-invalid={!!errors.message}
+                  className={wellFocusClass}
+                  style={{
+                    ...(errors.message ? wellErrorStyle : wellStyle),
+                    minHeight: "132px",
+                    resize: "vertical",
+                  }}
+                />
+              </Field>
+
+              {/* Subscribe checkbox */}
+              <div className="flex items-center gap-3 mt-1">
+                <input
+                  type="checkbox"
+                  id="subscribe"
+                  {...register("subscribe")}
+                  style={{
+                    appearance: "none",
+                    WebkitAppearance: "none",
+                    width: "18px",
+                    height: "18px",
+                    minWidth: "18px",
+                    borderRadius: "4px",
+                    border: 0,
+                    outline: "none",
+                    cursor: "pointer",
+                    boxShadow: "var(--recess)",
+                    background: "var(--input)",
+                    position: "relative",
+                    transition: "background .2s, box-shadow .2s",
+                  }}
+                  className="peer"
+                />
+                {/* Checkmark overlay rendered via CSS in globals */}
+                <label htmlFor="subscribe" className="text-[.875rem] text-muted-foreground cursor-pointer select-none">
+                  Receive news and updates from Aroh IT Solutions
+                </label>
+              </div>
+
+              <Button
+                type="submit"
+                variant="solid"
+                disabled={isSubmitting}
+                style={{ justifySelf: "start", marginTop: "6px" }}
+              >
+                {isSubmitting ? "Sending…" : "Send message"}
+              </Button>
+            </form>
           </div>
         </div>
       </section>

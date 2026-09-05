@@ -88,6 +88,7 @@ export default function ServicesPage() {
                         src={service.image} 
                         alt={service.title} 
                         className="block lg:hidden p-0 py-2"
+                        priority={index === 0}
                       />
 
                       <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -103,6 +104,7 @@ export default function ServicesPage() {
                         "hidden lg:block",
                         isEven ? "lg:order-2" : "lg:order-1"
                       )}
+                      priority={index === 0}
                     />
                   </div>
                 </FadeIn>

@@ -83,9 +83,10 @@ export default function PortfolioPage() {
                         src={project.image}
                         alt={project.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                         className="object-cover object-top img-machined"
-                        priority={false}
+                        priority={index === 0}
+                        loading={index === 0 ? undefined : "eager"}
                       />
                     </div>
 

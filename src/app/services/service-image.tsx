@@ -8,9 +8,10 @@ interface ServiceImageProps {
   src: string;
   alt: string;
   className?: string;
+  priority?: boolean;
 }
 
-export function ServiceImage({ src, alt, className }: ServiceImageProps) {
+export function ServiceImage({ src, alt, className, priority = false }: ServiceImageProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -31,9 +32,10 @@ export function ServiceImage({ src, alt, className }: ServiceImageProps) {
           src={src}
           alt={alt}
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 1024px) 100vw, 45vw"
           className="object-cover img-machined"
-          priority={true}
+          priority={priority}
+          loading={priority ? undefined : "eager"}
         />
       </div>
     </div>

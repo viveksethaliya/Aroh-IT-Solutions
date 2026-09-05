@@ -5,8 +5,7 @@ export function Footer() {
     <footer className="bg-background" style={{ paddingTop: "clamp(46px,7vh,80px)", paddingBottom: "34px" }}>
       <div className="wrap">
         <div 
-          className="grid gap-[clamp(24px,4vw,50px)] pb-11"
-          style={{ gridTemplateColumns: "1.6fr repeat(3, minmax(0,1fr))" }}
+          className="grid gap-[clamp(24px,4vw,50px)] pb-11 grid-cols-1 min-[640px]:grid-cols-2 min-[980px]:grid-cols-[1.6fr_repeat(3,minmax(0,1fr))]"
         >
           {/* Brand */}
           <div>
@@ -22,32 +21,32 @@ export function Footer() {
           {/* Capabilities */}
           <div>
             <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Capabilities</h2>
-            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Web platforms</Link></li>
-              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Mobile applications</Link></li>
-              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Systems integration</Link></li>
-              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Infrastructure</Link></li>
+            <ul className="list-none m-0 p-0 grid gap-0">
+              <li><Link href="/services" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Web platforms</Link></li>
+              <li><Link href="/services" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Mobile applications</Link></li>
+              <li><Link href="/services" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Systems integration</Link></li>
+              <li><Link href="/services" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Infrastructure</Link></li>
             </ul>
           </div>
 
           {/* Studio */}
           <div>
             <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Studio</h2>
-            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><Link href="/#process" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">How we work</Link></li>
-              <li><Link href="/portfolio" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Work</Link></li>
-              <li><Link href="/contact" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Contact</Link></li>
-              <li><Link href="/" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Careers</Link></li>
+            <ul className="list-none m-0 p-0 grid gap-0">
+              <li><Link href="/#process" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">How we work</Link></li>
+              <li><Link href="/portfolio" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Work</Link></li>
+              <li><Link href="/contact" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Contact</Link></li>
+              <li><Link href="/" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Careers</Link></li>
             </ul>
           </div>
 
           {/* Elsewhere */}
           <div>
             <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Elsewhere</h2>
-            <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">LinkedIn</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">GitHub</a></li>
-              <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Dribbble</a></li>
+            <ul className="list-none m-0 p-0 grid gap-0">
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">LinkedIn</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">GitHub</a></li>
+              <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="block py-[5px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Dribbble</a></li>
             </ul>
           </div>
         </div>

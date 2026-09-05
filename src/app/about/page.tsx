@@ -4,8 +4,11 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { CTASection } from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
-  title: "About Us | Aroh IT Solutions",
-  description: "Learn about our mission, vision, and the team behind Aroh IT Solutions.",
+  title: "About",
+  description: "A product engineering studio in Ahmedabad and Vancouver, building since 2016. How we scope, build and hand over the systems our clients run on.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 import { SubpageHero } from "@/components/layout/SubpageHero";

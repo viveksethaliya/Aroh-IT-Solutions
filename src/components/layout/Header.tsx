@@ -33,10 +33,10 @@ export function Header() {
         
         {/* Nav — hidden below 880px */}
         <nav className="flex items-center gap-[clamp(16px,2vw,32px)]" style={{ display: undefined }} aria-label="Main navigation">
-          <Link href="/services" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Capabilities</Link>
-          <Link href="/#process" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">How we work</Link>
-          <Link href="/portfolio" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Work</Link>
-          <Link href="/contact" className="text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Contact</Link>
+          <Link href="/services" className="py-3 text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Capabilities</Link>
+          <Link href="/#process" className="py-3 text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">How we work</Link>
+          <Link href="/portfolio" className="py-3 text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Work</Link>
+          <Link href="/contact" className="py-3 text-[0.875rem] font-medium text-muted-foreground hover:text-foreground transition-colors max-[880px]:hidden">Contact</Link>
 
           {/* CTA: scroll-gated on desktop, always visible on mobile (≤880px) */}
           <Link 

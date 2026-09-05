@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { ProcessRail } from "@/components/home/ProcessRail";
 import { CTASection } from "@/components/home/CTASection";
+
+export const metadata: Metadata = {
+  title: "Aroh IT Solutions | Product Engineering Studio",
+  description: "A product engineering studio building operational software for companies that have outgrown their tools. Web platforms, mobile apps, and systems integration.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

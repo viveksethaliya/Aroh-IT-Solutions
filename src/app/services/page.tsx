@@ -8,8 +8,11 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { CTASection } from "@/components/home/CTASection";
 
 export const metadata: Metadata = {
-  title: "Our Services | Aroh IT Solutions",
-  description: "Explore our comprehensive range of digital services and solutions.",
+  title: "Services",
+  description: "Web platforms, e-commerce builds, SEO, digital marketing, design and ongoing maintenance. Six practices, and how we scope each one.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 const allServices = [

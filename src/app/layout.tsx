@@ -17,10 +17,21 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  title: "Aroh IT Solutions | Product Engineering Studio",
-  description: "We build the platforms and internal systems that companies run on — then stay on to keep them running. No handover into a vacuum.",
+  metadataBase: new URL("https://aroh-it-solutions.vercel.app"),
+  title: {
+    template: "%s | Aroh IT Solutions",
+    default: "Aroh IT Solutions | Product Engineering Studio",
+  },
+  description: "A product engineering studio building operational software for companies that have outgrown their tools. Web platforms, mobile apps, and systems integration.",
   verification: {
     google: "BLh6XGol5xGwIfu5jbxojaEyOu6LsEed7642NqD2fEY",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Aroh IT Solutions",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 
@@ -49,8 +60,10 @@ export default function RootLayout({
           <RevealInit />
           <Toaster richColors position="top-center" />
         </ThemeProvider>
-        {/* Placeholder for Google Analytics. Replace G-XXXXXXXXXX with actual ID */}
-        <GoogleAnalytics gaId="G-XXXXXXXXXX" />
+        {/* Render Google Analytics only if ID is provided and not a placeholder */}
+        {process.env.NEXT_PUBLIC_GA_ID && process.env.NEXT_PUBLIC_GA_ID !== "G-XXXXXXXXXX" && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

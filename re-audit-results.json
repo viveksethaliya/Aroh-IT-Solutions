@@ -1,0 +1,179 @@
+{
+  "C1": [
+    {
+      "route": "/",
+      "w": 320,
+      "overflow": {
+        "scrollWidth": 325,
+        "innerWidth": 320,
+        "hasOverflow": true
+      }
+    },
+    {
+      "route": "/about",
+      "w": 320,
+      "overflow": {
+        "scrollWidth": 325,
+        "innerWidth": 320,
+        "hasOverflow": true
+      }
+    },
+    {
+      "route": "/services",
+      "w": 320,
+      "overflow": {
+        "scrollWidth": 325,
+        "innerWidth": 320,
+        "hasOverflow": true
+      }
+    },
+    {
+      "route": "/portfolio",
+      "w": 320,
+      "overflow": {
+        "scrollWidth": 325,
+        "innerWidth": 320,
+        "hasOverflow": true
+      }
+    },
+    {
+      "route": "/contact",
+      "w": 320,
+      "overflow": {
+        "scrollWidth": 325,
+        "innerWidth": 320,
+        "hasOverflow": true
+      }
+    }
+  ],
+  "C1_A7": {
+    "scrollWidth": 325,
+    "innerWidth": 320,
+    "hasOverflow": true
+  },
+  "C2": {
+    "/": {
+      "h1Visible": true,
+      "navVisible": true,
+      "bodyHasVisibleText": true
+    },
+    "/about": {
+      "h1Visible": false,
+      "navVisible": true,
+      "bodyHasVisibleText": true
+    },
+    "/services": {
+      "h1Visible": false,
+      "navVisible": true,
+      "bodyHasVisibleText": true
+    },
+    "/portfolio": {
+      "h1Visible": false,
+      "navVisible": true,
+      "bodyHasVisibleText": true
+    },
+    "/contact": {
+      "h1Visible": true,
+      "navVisible": true,
+      "bodyHasVisibleText": true
+    }
+  },
+  "C3": [
+    {
+      "text": "Aroh\nIT Solutions",
+      "rectW": 98.609375,
+      "rectH": 46,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "flex"
+    },
+    {
+      "text": "Web platforms",
+      "rectW": 62.890625,
+      "rectH": 40,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Mobile applications",
+      "rectW": 80.59375,
+      "rectH": 40,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Systems integration",
+      "rectW": 70.859375,
+      "rectH": 40,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Infrastructure",
+      "rectW": 89.140625,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "How we work",
+      "rectW": 52.640625,
+      "rectH": 40,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Work",
+      "rectW": 34.515625,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Contact",
+      "rectW": 52.9375,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Careers",
+      "rectW": 53.140625,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "LinkedIn",
+      "rectW": 56.40625,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "GitHub",
+      "rectW": 47.875,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    },
+    {
+      "text": "Dribbble",
+      "rectW": 56.640625,
+      "rectH": 16,
+      "pt": "0px",
+      "pb": "0px",
+      "display": "inline"
+    }
+  ]
+}

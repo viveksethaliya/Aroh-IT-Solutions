@@ -1,0 +1,32 @@
+{
+  "/": {
+    "lcp": 780,
+    "cls": 0,
+    "tbt": 0,
+    "lcpElement": "SPAN"
+  },
+  "/about": {
+    "lcp": 800,
+    "cls": 0,
+    "tbt": 2,
+    "lcpElement": "H1.type-h2.text-foreground.mb-4.md:mb-6"
+  },
+  "/services": {
+    "lcp": 116,
+    "cls": 0,
+    "tbt": 0,
+    "lcpElement": "IMG.object-cover.img-machined [src=http://localhost:3456/_next/image?url=%2Fservices%2FCustom-Website.webp&w=3840&q=75]"
+  },
+  "/portfolio": {
+    "lcp": 200,
+    "cls": 0,
+    "tbt": 1,
+    "lcpElement": "IMG.object-cover.object-top.img-machined [src=http://localhost:3456/_next/image?url=%2Fportfolio%2Flepetaledor.png&w=3840&q=75]"
+  },
+  "/contact": {
+    "lcp": 120,
+    "cls": 0,
+    "tbt": 0,
+    "lcpElement": "H1.type-h2.text-foreground.mb-4"
+  }
+}

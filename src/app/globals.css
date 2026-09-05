@@ -396,12 +396,12 @@ input[type="checkbox"]:checked::after {
 /* Footer responsive grid */
 @media (max-width: 860px) {
   footer [style*="1.6fr repeat(3"] {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 @media (max-width: 560px) {
   footer [style*="1.6fr repeat(3"] {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
 

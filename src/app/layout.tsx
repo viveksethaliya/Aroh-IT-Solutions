@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Aroh IT Solutions | Product Engineering Studio",
   description: "We build the platforms and internal systems that companies run on — then stay on to keep them running. No handover into a vacuum.",
   verification: {
-    google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_KEY",
+    google: "BLh6XGol5xGwIfu5jbxojaEyOu6LsEed7642NqD2fEY",
   },
 };
 

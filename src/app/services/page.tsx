@@ -81,7 +81,7 @@ export default function ServicesPage() {
                       >
                         <service.icon className="h-8 w-8 text-primary" />
                       </div>
-                      <h3 className="type-h3 text-foreground">{service.title}</h3>
+                      <h2 className="type-h3 text-foreground">{service.title}</h2>
                       
                       {/* Mobile Image: sits under the title on mobile, hidden on desktop */}
                       <ServiceImage 

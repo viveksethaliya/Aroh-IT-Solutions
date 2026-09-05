@@ -21,33 +21,33 @@ export function Footer() {
 
           {/* Capabilities */}
           <div>
-            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Capabilities</h4>
+            <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Capabilities</h2>
             <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Web platforms</Link></li>
-              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Mobile applications</Link></li>
-              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Systems integration</Link></li>
-              <li><Link href="/services" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Infrastructure</Link></li>
+              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Web platforms</Link></li>
+              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Mobile applications</Link></li>
+              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Systems integration</Link></li>
+              <li><Link href="/services" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Infrastructure</Link></li>
             </ul>
           </div>
 
           {/* Studio */}
           <div>
-            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Studio</h4>
+            <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Studio</h2>
             <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><Link href="/#process" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">How we work</Link></li>
-              <li><Link href="/portfolio" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Work</Link></li>
-              <li><Link href="/contact" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Contact</Link></li>
-              <li><Link href="/" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Careers</Link></li>
+              <li><Link href="/#process" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">How we work</Link></li>
+              <li><Link href="/portfolio" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Work</Link></li>
+              <li><Link href="/contact" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Contact</Link></li>
+              <li><Link href="/" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Careers</Link></li>
             </ul>
           </div>
 
           {/* Elsewhere */}
           <div>
-            <h4 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Elsewhere</h4>
+            <h2 className="mb-4" style={{ fontSize: ".8125rem", color: "var(--muted-foreground)", fontVariationSettings: '"wdth" 100,"wght" 500' }}>Elsewhere</h2>
             <ul className="list-none m-0 p-0 grid gap-[.6rem]">
-              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">LinkedIn</a></li>
-              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">GitHub</a></li>
-              <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200">Dribbble</a></li>
+              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">LinkedIn</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">GitHub</a></li>
+              <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer" className="block py-[14px] -my-[14px] text-[.94rem] text-muted-foreground hover:text-foreground transition-colors duration-200 relative z-10">Dribbble</a></li>
             </ul>
           </div>
         </div>

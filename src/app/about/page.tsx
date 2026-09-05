@@ -48,7 +48,7 @@ export default function AboutPage() {
                   <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                     <value.icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="type-h4">{value.title}</h3>
+                  <h2 className="type-h4">{value.title}</h2>
                   <p className="text-muted-foreground">{value.description}</p>
                 </div>
               </FadeIn>
